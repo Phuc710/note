@@ -1,0 +1,1009 @@
+@import url('./theme.css');
+
+/* ==========================================
+   INDEX PAGE - SPECIFIC STYLES
+   ========================================== */
+
+body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ==========================================
+   TOOLS DROPDOWN STYLES
+   ========================================== */
+
+.tools-dropdown {
+    position: relative;
+}
+
+.tools-menu {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    margin-bottom: 0.5rem;
+    z-index: 50;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-lg);
+}
+
+.dark-mode .tools-menu {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+}
+
+.dark-mode .tools-btn:hover {
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.dark-mode .tools-menu a:hover {
+    background: rgba(59, 130, 246, 0.1);
+}
+
+/* ==========================================
+   APP CONTAINER & LAYOUT
+   ========================================== */
+
+.app-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--bg-secondary);
+}
+
+/* ==========================================
+   SIDEBAR STYLES
+   ========================================== */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-primary);
+    z-index: 1000;
+    transition: left var(--transition-slow);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-xl);
+}
+
+.sidebar.expanded {
+    left: 0;
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: opacity var(--transition-base);
+}
+
+.sidebar-mini {
+    display: none;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border-light);
+    background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+}
+
+/* Sidebar Actions */
+.sidebar-actions {
+    padding: var(--space-md);
+    border-bottom: 1px solid var(--border-light);
+    background-color: var(--bg-secondary);
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+    padding: var(--space-md);
+    border-top: 1px solid var(--border-light);
+    background-color: var(--bg-secondary);
+}
+
+/* ==========================================
+   MAIN CONTENT AREA
+   ========================================== */
+
+.main-content {
+    flex: 1;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bg-secondary);
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md);
+    background-color: var(--bg-primary);
+    box-shadow: var(--shadow-sm);
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* ==========================================
+   NOTE LIST STYLES
+   ========================================== */
+
+#notesList {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-md);
+}
+
+.note-item {
+    cursor: pointer;
+    transition: all var(--transition-base);
+    border-radius: var(--radius-lg);
+    background-color: var(--bg-primary);
+    border: 1px solid transparent;
+    margin-bottom: var(--space-xs);
+}
+
+.note-item:hover {
+    background: linear-gradient(135deg, var(--primary-50), var(--primary-100));
+    border-color: var(--primary-200);
+    transform: translateX(4px);
+}
+
+.note-item.active {
+    background: linear-gradient(135deg, var(--primary-100), var(--primary-200));
+    border-left: 4px solid var(--primary-500);
+    box-shadow: var(--shadow-md);
+}
+
+/* Drag & Drop States */
+.note-item.dragging {
+    opacity: 0.5;
+    background-color: var(--neutral-100);
+    border: 2px dashed var(--neutral-400);
+    transform: scale(0.95);
+}
+
+.note-item.drag-over {
+    background: linear-gradient(135deg, var(--primary-100), var(--primary-200)) !important;
+    border-left: 4px solid var(--primary-500);
+    transform: translateX(6px);
+}
+
+/* Folder Styles */
+.folder-item {
+    position: relative;
+}
+
+.folder-collapsed {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all var(--transition-slow);
+}
+
+.folder-expanded {
+    max-height: 2000px;
+    opacity: 1;
+    transition: all var(--transition-slow);
+}
+
+.folder-toggle {
+    transition: transform var(--transition-base);
+}
+
+.folder-toggle.rotated {
+    transform: rotate(90deg);
+}
+
+/* ==========================================
+   NOTE EDITOR STYLES
+   ========================================== */
+
+.note-editor {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 80px);
+    background-color: var(--bg-primary);
+}
+
+.note-editor.hidden {
+    display: none;
+}
+
+.note-header {
+    padding: var(--space-xl);
+    border-bottom: 1px solid var(--border-light);
+    background-color: var(--bg-primary);
+    flex-shrink: 0;
+}
+
+.note-content-area {
+    flex: 1;
+    padding: var(--space-xl);
+    overflow: hidden;
+    background-color: var(--bg-primary);
+}
+
+/* Quill Editor Customization */
+#editor-container {
+    height: 100%;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+}
+
+.ql-toolbar.ql-snow {
+    border: none;
+    border-bottom: 1px solid var(--border-light);
+    background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding: var(--space-md);
+}
+
+.ql-container.ql-snow {
+    border: none;
+    font-size: 1rem;
+}
+
+.ql-editor {
+    padding: var(--space-xl);
+    min-height: 400px;
+    color: var(--text-primary);
+}
+
+.ql-editor.ql-blank::before {
+    color: var(--text-tertiary);
+    font-style: normal;
+}
+
+/* Quill Toolbar Icons */
+.ql-snow .ql-stroke {
+    stroke: var(--text-secondary);
+}
+
+.ql-snow .ql-fill {
+    fill: var(--text-secondary);
+}
+
+.ql-snow .ql-picker-label {
+    color: var(--text-secondary);
+}
+
+.ql-snow.ql-toolbar button:hover,
+.ql-snow .ql-toolbar button:hover {
+    color: var(--primary-600);
+}
+
+.ql-snow.ql-toolbar button:hover .ql-stroke,
+.ql-snow .ql-toolbar button:hover .ql-stroke {
+    stroke: var(--primary-600);
+}
+
+.ql-snow.ql-toolbar button:hover .ql-fill,
+.ql-snow .ql-toolbar button:hover .ql-fill {
+    fill: var(--primary-600);
+}
+
+.ql-snow.ql-toolbar button.ql-active,
+.ql-snow .ql-toolbar button.ql-active {
+    color: var(--primary-600);
+}
+
+.ql-snow.ql-toolbar button.ql-active .ql-stroke,
+.ql-snow .ql-toolbar button.ql-active .ql-stroke {
+    stroke: var(--primary-600);
+}
+
+.ql-snow.ql-toolbar button.ql-active .ql-fill,
+.ql-snow .ql-toolbar button.ql-active .ql-fill {
+    fill: var(--primary-600);
+}
+
+/* Drag & Drop File Upload */
+#editor-container.drag-highlight {
+    border: 2px dashed var(--primary-500);
+    background-color: var(--primary-50);
+    position: relative;
+}
+
+#editor-container.drag-highlight::after {
+    content: 'Thả file để tải lên';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--bg-primary);
+    padding: var(--space-lg) var(--space-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    font-weight: 600;
+    color: var(--primary-600);
+    pointer-events: none;
+}
+
+/* ==========================================
+   WELCOME SCREEN
+   ========================================== */
+
+.welcome-screen {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+    height: calc(100vh - 80px);
+}
+
+/* ==========================================
+   MINI BUTTON (Collapsed Sidebar)
+   ========================================== */
+
+.mini-button {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all var(--transition-base);
+    margin-bottom: var(--space-sm);
+    cursor: pointer;
+    border: none;
+    background: transparent;
+}
+
+.mini-button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: scale(1.1);
+}
+
+/* Tooltip for Mini Buttons */
+.tooltip {
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .sidebar.collapsed .tooltip:hover::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: var(--space-md);
+        padding: var(--space-sm) var(--space-md);
+        background-color: white;
+        color: #1e293b;
+        border-radius: var(--radius-md);
+        font-size: 0.75rem;
+        white-space: nowrap;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        border: 2px solid #e2e8f0;
+        font-weight: 600;
+        animation: fadeIn var(--transition-base) ease-out;
+    }
+    
+    .sidebar.collapsed .tooltip:hover::before {
+        content: '';
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: 6px;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-right: 5px solid white;
+        z-index: 1000;
+    }
+}
+
+/* ==========================================
+   PROGRESS INDICATOR
+   ========================================== */
+
+.progress-bordered {
+    width: 134.4px;
+    height: 24.6px;
+    border-radius: 22.4px;
+    color: var(--primary-600);
+    border: 2.2px solid;
+    position: relative;
+}
+
+.progress-bordered::before {
+    content: "";
+    position: absolute;
+    margin: 2.2px;
+    inset: 0 100% 0 0;
+    border-radius: inherit;
+    background: currentColor;
+    animation: progress-animation 2s infinite;
+}
+
+@keyframes progress-animation {
+    100% {
+        inset: 0;
+    }
+}
+
+/* ==========================================
+   DESKTOP RESPONSIVE
+   ========================================== */
+
+@media (min-width: 768px) {
+    .sidebar {
+        position: relative;
+        left: 0;
+        width: 350px;
+        min-width: 350px;
+        box-shadow: var(--shadow-lg);
+        z-index: 1;
+    }
+    
+    .sidebar.collapsed {
+        width: 60px;
+        min-width: 60px;
+    }
+    
+    .sidebar.collapsed .sidebar-content {
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    .sidebar-mini {
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 60px;
+        height: 100%;
+        background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+        flex-direction: column;
+        align-items: center;
+        padding: var(--space-lg) 0;
+        opacity: 0;
+        transition: opacity var(--transition-base);
+        z-index: 2;
+    }
+    
+    .sidebar.collapsed .sidebar-mini {
+        opacity: 1;
+    }
+    
+    .mobile-header {
+        display: none;
+    }
+
+    .note-editor {
+        height: 100vh;
+    }
+    
+    .welcome-screen {
+        height: 100vh;
+    }
+}
+
+/* ==========================================
+   CUSTOM SCROLLBAR FOR SIDEBAR
+   ========================================== */
+
+#notesList::-webkit-scrollbar {
+    width: 6px;
+}
+
+#notesList::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#notesList::-webkit-scrollbar-thumb {
+    background-color: var(--neutral-300);
+    border-radius: var(--radius-sm);
+}
+
+#notesList::-webkit-scrollbar-thumb:hover {
+    background-color: var(--neutral-400);
+}
+
+/* ==========================================
+   TAILWIND OVERRIDES (for consistency)
+   ========================================== */
+
+.bg-white {
+    background-color: var(--bg-primary) !important;
+}
+
+.bg-slate-50,
+.bg-gray-50 {
+    background-color: var(--bg-secondary) !important;
+}
+
+.text-slate-800,
+.text-gray-800,
+.text-gray-900 {
+    color: var(--text-primary) !important;
+}
+
+.text-slate-600,
+.text-gray-600 {
+    color: var(--text-secondary) !important;
+}
+
+.text-slate-500,
+.text-gray-500 {
+    color: var(--text-tertiary) !important;
+}
+
+.border-slate-200,
+.border-gray-200 {
+    border-color: var(--border-light) !important;
+}
+
+.shadow-2xl {
+    box-shadow: var(--shadow-xl) !important;
+}
+
+/* ==========================================
+   DARK MODE OVERRIDES FOR INDEX
+   ========================================== */
+
+/* Sidebar Dark Mode */
+body.dark-mode .sidebar {
+    background-color: var(--bg-primary);
+    border-right: 1px solid var(--border-light);
+}
+
+body.dark-mode .sidebar-header {
+    background: linear-gradient(135deg, #0c4a6e, #075985) !important;
+}
+
+body.dark-mode .sidebar-actions {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-light);
+}
+
+body.dark-mode .sidebar-footer {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-light);
+}
+
+/* Note Items Dark Mode */
+body.dark-mode .note-item {
+    background-color: transparent;
+    color: var(--text-primary);
+}
+
+body.dark-mode .note-item:hover {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.12)) !important;
+    border-color: rgba(59, 130, 246, 0.3);
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .note-item:hover * {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .note-item:hover .text-slate-400,
+body.dark-mode .note-item:hover .text-slate-500 {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-mode .note-item:hover .text-amber-600 {
+    color: #fbbf24 !important;
+}
+
+body.dark-mode .note-item:hover .text-blue-600 {
+    color: #60a5fa !important;
+}
+
+body.dark-mode .note-item:hover .hover\:bg-blue-100 {
+    background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+body.dark-mode .note-item:hover .hover\:bg-amber-100 {
+    background-color: rgba(251, 191, 36, 0.2) !important;
+}
+
+body.dark-mode .note-item:hover .hover\:bg-red-100 {
+    background-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+body.dark-mode .note-item.active {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(37, 99, 235, 0.2)) !important;
+    border-left-color: #60a5fa;
+    color: var(--text-primary) !important;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+body.dark-mode .note-item.active * {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .note-item.active .text-slate-400,
+body.dark-mode .note-item.active .text-slate-500 {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-mode .note-item.active .text-amber-600 {
+    color: #fbbf24 !important;
+}
+
+/* Note Editor Dark Mode */
+body.dark-mode .note-editor {
+    background-color: var(--bg-primary);
+}
+
+body.dark-mode .note-header {
+    background-color: var(--bg-primary);
+    border-color: var(--border-light);
+}
+
+body.dark-mode .note-content-area {
+    background-color: var(--bg-primary);
+}
+
+/* Quill Editor Dark Mode */
+body.dark-mode #editor-container {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-light);
+}
+
+body.dark-mode .ql-toolbar.ql-snow {
+    background: linear-gradient(to bottom, var(--bg-secondary), var(--bg-tertiary)) !important;
+    border-color: var(--border-light) !important;
+}
+
+body.dark-mode .ql-editor {
+    color: var(--text-primary) !important;
+    background-color: var(--bg-secondary);
+}
+
+body.dark-mode .ql-editor.ql-blank::before {
+    color: var(--text-tertiary) !important;
+}
+
+body.dark-mode .ql-snow .ql-stroke { 
+    stroke: var(--text-secondary);
+}
+
+body.dark-mode .ql-snow .ql-fill { 
+    fill: var(--text-secondary);
+}
+
+body.dark-mode .ql-snow .ql-picker-label {
+    color: var(--text-secondary);
+}
+
+body.dark-mode .ql-snow .ql-picker-options {
+    background: var(--bg-tertiary);
+    border-color: var(--border-light);
+}
+
+body.dark-mode .ql-snow.ql-toolbar button:hover .ql-stroke,
+body.dark-mode .ql-snow .ql-toolbar button:hover .ql-stroke {
+    stroke: var(--primary-500);
+}
+
+body.dark-mode .ql-snow.ql-toolbar button:hover .ql-fill,
+body.dark-mode .ql-snow .ql-toolbar button:hover .ql-fill {
+    fill: var(--primary-500);
+}
+
+body.dark-mode .ql-snow.ql-toolbar button.ql-active .ql-stroke,
+body.dark-mode .ql-snow .ql-toolbar button.ql-active .ql-stroke {
+    stroke: var(--primary-500);
+}
+
+body.dark-mode .ql-snow.ql-toolbar button.ql-active .ql-fill,
+body.dark-mode .ql-snow .ql-toolbar button.ql-active .ql-fill {
+    fill: var(--primary-500);
+}
+
+/* Welcome Screen Dark Mode */
+body.dark-mode .welcome-screen {
+    background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+}
+
+/* Fix Welcome Quote Box in Dark Mode */
+body.dark-mode .welcome-screen .bg-gradient-to-br {
+    background: linear-gradient(to bottom right, var(--bg-secondary), var(--bg-tertiary)) !important;
+    border-color: var(--border-medium) !important;
+}
+
+body.dark-mode .welcome-screen .text-slate-800 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .welcome-screen .text-slate-600 {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-mode .welcome-screen .bg-gradient-to-br.from-sky-100 {
+    background: linear-gradient(to bottom right, var(--bg-secondary), var(--bg-tertiary)) !important;
+}
+
+body.dark-mode .welcome-screen .text-blue-500,
+body.dark-mode .welcome-screen .text-blue-600 {
+    color: var(--primary-500) !important;
+}
+
+/* Mobile Header Dark Mode */
+body.dark-mode .mobile-header {
+    background-color: var(--bg-primary);
+    border-color: var(--border-light);
+}
+
+/* Global Dark Mode text overrides for sub-pages (shortener/uploader) */
+body.dark-mode .text-slate-900,
+body.dark-mode .text-gray-900,
+body.dark-mode .text-slate-800,
+body.dark-mode .text-gray-800 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .text-slate-700,
+body.dark-mode .text-gray-700,
+body.dark-mode .text-slate-600,
+body.dark-mode .text-gray-600,
+body.dark-mode .text-slate-500,
+body.dark-mode .text-gray-500 {
+    color: var(--text-secondary) !important;
+}
+
+/* Make cards with bg-white readable in dark */
+body.dark-mode .bg-white {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Inputs/Textareas on sub-pages */
+body.dark-mode textarea,
+body.dark-mode .result textarea,
+body.dark-mode .glass-card textarea,
+body.dark-mode input[type="text"],
+body.dark-mode input[type="url"],
+body.dark-mode input[type="email"],
+body.dark-mode input[type="password"] {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-light) !important;
+}
+
+body.dark-mode textarea::placeholder,
+body.dark-mode input::placeholder {
+    color: var(--text-tertiary) !important;
+}
+
+/* Buttons hover remain legible */
+body.dark-mode .hover\:bg-slate-50:hover,
+body.dark-mode .hover\:bg-slate-100:hover {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        width: 280px;
+    }
+    
+    .sidebar.expanded {
+        transform: translateX(0);
+        z-index: 1000;
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .mobile-header {
+        display: flex;
+    }
+    
+    .desktop-header {
+        display: none;
+    }
+    
+    /* Responsive cho trang all.php */
+    .max-w-7xl {
+        max-width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    /* Responsive tabs */
+    .flex-col.sm\:flex-row {
+        flex-direction: column;
+    }
+    
+    .flex-col.sm\:flex-row > * {
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Responsive tables */
+    .overflow-x-auto {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Responsive grid */
+    .grid-cols-2.md\:grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .grid-cols-1.sm\:grid-cols-2 {
+        grid-template-columns: 1fr;
+    }
+    
+    .grid-cols-1.sm\:grid-cols-2.lg\:grid-cols-3.xl\:grid-cols-4 {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Responsive buttons */
+    .flex-col.sm\:flex-row.items-center.space-y-2.sm\:space-y-0.sm\:space-x-2 {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .flex-col.sm\:flex-row.items-center.space-y-2.sm\:space-y-0.sm\:space-x-2 > * {
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Responsive forms */
+    .flex.flex-col.sm\:flex-row.items-center.space-y-4.sm\:space-y-0.sm\:space-x-4 {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .flex.flex-col.sm\:flex-row.items-center.space-y-4.sm\:space-y-0.sm\:space-x-4 > * {
+        margin-bottom: 1rem;
+    }
+    
+    /* Responsive text */
+    .text-3xl {
+        font-size: 1.875rem;
+    }
+    
+    .text-2xl {
+        font-size: 1.5rem;
+    }
+    
+    .text-xl {
+        font-size: 1.25rem;
+    }
+    
+    /* Responsive padding */
+    .p-8 {
+        padding: 1.5rem;
+    }
+    
+    .px-6 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .py-8 {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+}
+
+/* Main Content Dark Mode */
+body.dark-mode .main-content {
+    background-color: var(--bg-secondary);
+}
+
+/* Tailwind Overrides for Dark Mode */
+body.dark-mode .bg-white {
+    background-color: var(--bg-primary) !important;
+}
+
+body.dark-mode .bg-slate-50,
+body.dark-mode .bg-gray-50 {
+    background-color: var(--bg-secondary) !important;
+}
+
+body.dark-mode .text-slate-800,
+body.dark-mode .text-gray-800,
+body.dark-mode .text-gray-900 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .text-slate-600,
+body.dark-mode .text-gray-600 {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-mode .text-slate-500,
+body.dark-mode .text-gray-500,
+body.dark-mode .text-slate-400 {
+    color: var(--text-tertiary) !important;
+}
+
+body.dark-mode .border-slate-200,
+body.dark-mode .border-gray-200,
+body.dark-mode .border-slate-100 {
+    border-color: var(--border-light) !important;
+}
+
+/* Sidebar Mini Dark Mode */
+body.dark-mode .sidebar-mini {
+    background: linear-gradient(135deg, #0c4a6e, #075985) !important;
+}
+
+/* Fix Sidebar Footer Links in Dark Mode */
+body.dark-mode .sidebar-footer a:hover,
+body.dark-mode .sidebar-footer button:hover {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+}
+
+body.dark-mode .sidebar-footer a:hover *,
+body.dark-mode .sidebar-footer button:hover * {
+    color: #0f172a !important;
+}
+
+body.dark-mode .hover\:bg-slate-200:hover {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+}
+
+body.dark-mode .hover\:bg-blue-100:hover {
+    background-color: #dbeafe !important;
+    color: #0f172a !important;
+}
+
+body.dark-mode .hover\:bg-purple-100:hover {
+    background-color: #f3e8ff !important;
+    color: #0f172a !important;
+}
+
+/* Fix Input Text Color in Dark Mode */
+body.dark-mode input[type="text"],
+body.dark-mode input[type="url"],
+body.dark-mode input[type="email"],
+body.dark-mode input[type="password"],
+body.dark-mode input[type="search"],
+body.dark-mode textarea,
+body.dark-mode select {
+    color: var(--text-primary) !important;
+    background-color: var(--bg-tertiary) !important;
+    border-color: var(--border-light) !important;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: var(--text-tertiary) !important;
+}
+
+/* Fix Modal Input in Dark Mode */
+body.dark-mode .modal-content input,
+body.dark-mode .modal-content textarea {
+    color: var(--text-primary) !important;
+    background-color: var(--bg-tertiary) !important;
+    border-color: var(--border-light) !important;
+}
+
+/* Fix Rename Modal */
+body.dark-mode #renameInput {
+    color: var(--text-primary) !important;
+    background-color: var(--bg-tertiary) !important;
+}
+
+/* Fix Share Modal */
+body.dark-mode #shareDescription,
+body.dark-mode #shareLinkInput {
+    color: var(--text-primary) !important;
+    background-color: var(--bg-tertiary) !important;
+}

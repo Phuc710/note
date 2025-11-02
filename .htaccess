@@ -1,0 +1,61 @@
+RewriteEngine On
+RewriteBase /note/
+
+# Bật mod_rewrite
+Options +FollowSymLinks
+
+# Redirect index.php về / (chỉ GET, không redirect POST)
+RewriteCond %{REQUEST_METHOD} =GET
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
+RewriteRule ^ %1 [R=301,L]
+
+# Bỏ đuôi .php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# Bỏ đuôi .html
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+# Shortener redirect
+RewriteRule ^s/([a-zA-Z0-9]+)$ shortener/redirect.php?id=$1 [L]
+
+# QR Trái Tim
+RewriteRule ^qr_traitim/?$ qr_traitim/index.php [L]
+RewriteRule ^qr_traitim/view/([a-zA-Z0-9\-]+)$ qr_traitim/view.php?id=$1 [L]
+
+# QR Generator (redirect to QR Trái Tim)
+RewriteRule ^qr/?$ qr_traitim/index.php [L]
+
+# Shortener
+RewriteRule ^shortener/?$ shortener/index.php [L]
+
+# Uploader
+RewriteRule ^uploader/?$ uploader/index.php [L]
+RewriteRule ^uploader/view/([a-zA-Z0-9]+)$ uploader/view.php?id=$1 [L]
+
+# Admin
+RewriteRule ^admin/?$ admin.php [L]
+
+# All
+RewriteRule ^all/?$ all.php [L]
+
+# Manage
+RewriteRule ^manage/?$ manage.php [L]
+
+# Login
+RewriteRule ^login/?$ login.php [L]
+
+# Logout
+RewriteRule ^logout/?$ logout.php [L]
+
+# Share
+RewriteRule ^share/([a-zA-Z0-9]+)$ share.php?id=$1 [L]
+
+# Shares
+RewriteRule ^shares/?$ shares.php [L]
+
+# Index
+DirectoryIndex index.php index.html

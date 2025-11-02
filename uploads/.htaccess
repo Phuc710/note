@@ -1,0 +1,12 @@
+Options -Indexes
+AddHandler default-handler .php .php3 .php4 .php5 .phtml .cgi .pl .asp .aspx .shtml .jsp
+
+<FilesMatch "\.(php|php3|php4|php5|phtml|cgi|pl|asp|aspx|shtml|jsp)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.(jpg|jpeg|png|gif|pdf|doc|docx|txt)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
