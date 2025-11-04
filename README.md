@@ -1,4 +1,4 @@
-# 📝 Note App - Hệ thống ghi chú đa năng
+# 📝 Note App - Hệ thống ghi chú đa năng NOTEPAD + SHORT LINK + UP ẢNH LẤY LINK
 
 > Ứng dụng ghi chú hiện đại với tính năng upload ảnh tự động nén và rút gọn link
 
@@ -157,6 +157,6 @@ Mọi đóng góp đều được chào đón! Tạo issue hoặc pull request.
 
 ---
 
-**Phát triển bởi:** [Tên của bạn]  
+**Phát triển bởi:** [PHUCX]  
 **Version:** 1.0.0  
 **Ngày cập nhật:** 02/11/2025
